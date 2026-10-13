@@ -57,6 +57,23 @@ end
 
 <pre>set label word (precision current-sun 0) "%"</pre>
 
-NTCN
+Додаю зміну у функцію go, щоб задати параметри зі змінених слайдерів у нові змінні.
 
+<pre>
+to go
+  ;; Stop if all of the leaves are dead
+  if not any? leaves [ stop ]
+  
+  set current-temperature average-temperature
+  set current-sun max-sun-intensity
 
+  ;; ... rest of the code
+</pre>
+
+Зміни у коді зламали віджет Weather conditions, бо змінились назви змінних. Потрібно оновити їх.
+
+![Змінені назви змінних у віджеті Weather conditions](fig2.png)
+
+І нарешті можна налаштувати окремі згадані монітори.
+
+![Пара нових моніторів](fig3.png)
