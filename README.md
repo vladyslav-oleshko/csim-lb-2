@@ -15,7 +15,7 @@
 Це була лише візуальна зміна, а далі потрібно покроково змінити код. І щоб все було органічно, потрібно на заміну змінененим параметрам задати нові внутрішні. У globals додаю current-temperature та current-sun. Оновлені globals виглядають наступним чином.
 
 <pre>
-  globals [
+globals [
   bottom-line          ;; controls where the ground is
   evaporation-temp     ;; temperature at which water evaporates
   current-temperature  ;; current temperature during day
