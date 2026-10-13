@@ -19,6 +19,37 @@ globals [
   bottom-line          ;; controls where the ground is
   evaporation-temp     ;; temperature at which water evaporates
   current-temperature  ;; current temperature during day
-  current-sun          ;; current sun-intensity during day
+  current-sun          ;; current sun intensity during day
 ]
 </pre>
+
+Далі потрібно оновити використання temperature на current-temperature у процедурах (функціях) adjust-water, adjust-chlorophyll, change-color. А також sun-intensity на current-sun у процедурах adjust-chlorophyll, adjust-sugar, show-intensity. Додаю кілька змінених функцій для прикладу, але не всі через їх розмір.
+
+<pre>
+to show-intensity  ;; sun procedure
+  set color scale-color yellow current-sun 0 150
+  set size current-sun / 10
+  set label word current-sun "%"
+  ifelse current-sun < 50
+    [ set label-color yellow ]
+    [ set label-color black  ]
+end
+</pre>
+
+<pre>
+to adjust-chlorophyll
+  ;; If the temperature is low, then reduce the chlorophyll
+  if current-temperature < 15 [
+    set chlorophyll chlorophyll - (.5 * (15 - current-temperature))
+  ]
+  ;; If the sun is strong, then reduce the chlorophyll
+  if current-sun > 75 [
+    set chlorophyll chlorophyll - (.5 * (current-sun - 75))
+  ]
+  ;; New chlorophyll comes from water and sunlight
+  if current-temperature > 15 and current-sun > 20 [
+    set chlorophyll chlorophyll + 1
+  ]
+end
+</pre>
+
